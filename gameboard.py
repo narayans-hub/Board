@@ -51,7 +51,7 @@ class WriteLabel(Label):
         )
 
         self.behaviours()
-        self.update()
+        #self.update()
 
     def set_label(self, label):
         self._value.set(label)
@@ -123,7 +123,8 @@ class GameCell(WriteLabel):
 
         self.row = row
         self.col = col
-        self.show(root)
+        self.config(text=self.label, font=("Arial", 18))
+        #self.show(root)
 
     def get_row(self):
         '''
@@ -253,7 +254,7 @@ class GameBoard(object):
         self.__main_root.update()
         self.__maybe_load_code()
 
-    def __init__(self, num_rows=4, num_columns=4, title="Game Board", threaded=True, start=None, handle=None):
+    def __init__(self, num_rows=4, num_columns=4, title="Game Board", threaded=True, init=None, click=None):
 
         self.__main_root = Tk()
         _width = 600
@@ -264,8 +265,8 @@ class GameBoard(object):
         self.__main_root.title(title)
 
         self.__threaded = threaded  # default True - code is run in separate thread
-        self.__handle = handle  # default None - no event handler
-        self.__start = start  # default None - no startup code
+        self.__handle = click  # default None - no event handler
+        self.__start = init  # default None - no startup code
 
         self.opsMenu = None
         self.__active_key = None
